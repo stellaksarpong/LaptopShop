@@ -22,13 +22,14 @@
             class="form-control"
             id="email"
             aria-describedby="emailHelp"
+            name="email"
           />
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" />
+          <input type="password" class="form-control" id="password" name="password"/>
           <span>Do not have an account? <a href="/signup">signup here</a></span>
           <br />
           <br />
-          <button class="btn btn-primary btn-block w-100" id="login">
+          <button class="btn btn-primary btn-block w-100" id="login" type="submit">
             Login
           </button>
         </form>
@@ -41,7 +42,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+     <script>
       const login = document.getElementById("login");
       login.addEventListener("click", (e) => {
         e.preventDefault();

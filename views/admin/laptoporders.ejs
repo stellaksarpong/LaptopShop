@@ -1,0 +1,89 @@
+<%-include('../partials/admin/admin.head.ejs')-%>
+
+
+<body>
+
+   <!-- Offcanval Overlay -->
+   <div class="offcanvas-overlay"></div>
+   <!-- Offcanval Overlay -->
+
+   <!-- Wrapper -->
+   <div class="wrapper">
+      <!-- Header -->
+      <%-include('../partials/admin/admin.header.ejs')-%>
+
+      <!-- End Header -->
+
+      <!-- Main Wrapper -->
+      <div class="main-wrapper">
+         <!-- Sidebar -->
+         <%-include('../partials/admin/admin.sidebar.ejs')-%>
+
+         <!-- End Sidebar -->
+
+         <!-- Main Content -->
+         <div class="main-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Card -->
+                        <div class="card bg-transparent">
+                            <div class="card-body bg-white">
+                                <h4 class="pl-2 pt-2 pb-2">Order List</h4>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="order-list-table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>ID <img src="../../assets/img/svg/table-down-arrow.svg" alt="" class="svg"></th>
+                                            <th>Purchase Date <img src="../../assets/img/svg/table-down-arrow.svg" alt="" class="svg"></th>
+                                            <th>Customer <img src="../../assets/img/svg/table-down-arrow.svg" alt="" class="svg"></th>
+                                            <th>Grand Total <img src="../../assets/img/svg/table-down-arrow.svg" alt="" class="svg"></th>
+                                            <th>Tax</th>
+                                            <th>Shipping</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        <tr>
+                                            <td>#00125</td>
+                                            <td>14 November 2019</td>
+                                            <td>Jim Spencer</td>
+                                            <td>$2546.6</td>
+                                            <td>$25.6</td>
+                                            <td>$5.6</td>
+                                            <td>12</td>
+                                            <td><button type="button" class="status-btn un_paid">Unpaid</button></td>
+                                            <td><a href="#"><img src="../../assets/img/svg/table-colse.svg" alt="" class="svg"></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                </div>
+            </div>
+         </div>
+         <!-- End Main Content -->
+      </div>
+      <!-- End Main Wrapper -->
+
+      <!-- Footer -->
+      <%-include('../partials/admin/admin.footer.ejs')-%>
+      <!-- End Footer -->
+   </div>
+   <!-- End wrapper -->
+
+   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+   <script src="../../assets/js/jquery.min.js"></script>
+   <script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../../assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+   <script src="../../assets/js/script.js"></script>
+   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+</body>
+
+</html>
