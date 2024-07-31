@@ -1,6 +1,21 @@
 "use strict";
 const connection = require("../utils/db");
 const bcrypt = require("bcryptjs");
+// const crypto=require('crypto')
+// const passport=require('passport')
+// const LocalStrategy=require('passport-local').Strategy
+// =======================================================================================
+const pbkdf2 = (password, salt) => {
+  return new Promise((resolve, reject) => {
+    crypto.pbkdf2(password, salt, 310000, 32, 'sha256', (err, hashedPassword) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(hashedPassword.toString('hex'));
+    });
+  });
+};
+// =======================================================================================
 // ===LOGIN===
 const getLogin = (req, res, next) => {
   try {
@@ -10,38 +25,33 @@ const getLogin = (req, res, next) => {
   }
 };
 
-const postLogin = (req, res, next) => {
-  const { email, password } = req.body;
-  if (email && password) {
-    try {
-      const sql = `SELECT * FROM users WHERE email=?`;
-      connection.query(sql, email, async(error, data) => {
-        if (!error) {
-          console.log("found user");
-          const hashpassword = data[0]?.password;
-          bcrypt.compare(password, hashpassword,(err,match)=>{
-           if (err)throw err
-           if (match) {
-            return res.json('match')
-            
-           } else {
-            return res.json('no match')
-           }
-          });
-          // console.log(verify);
-          // res.json(verify);
-        } else {
-          console.log("no such user");
-          res.status(404).json("oops");
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    return res.send("email and password required");
-  }
-};
+// const postLogin = async(req, res, next) => {
+//   const {email,password}=req.body
+//   try {
+//     if(email&&password){
+//       const sql=`SELECT * FROM users WHERE email=?`
+//       const[rows,fields]=await connection.query(sql,[email])
+//       if(rows.length===0){
+//         console.log('no such user');
+//       }else{
+//         const verify=await bcrypt.compare(password,rows[0].password)
+//         console.log(verify);
+//         if(verify){
+//           req.session.user=rows[0].role
+//          return res.redirect('/');
+//         }else{
+//          return res.redirect('/login')
+//         }
+//       }
+//     }else{
+//       return res.send('all fields required')
+//     }
+//   } catch (error) {
+//     console.log(error)
+//     res.status(404).send('wahala signin in oo')
+//   }
+  
+// };
 // ===END OF LOGIN===
 
 // ===SIGNUP===
@@ -53,29 +63,26 @@ const getSignUp = (req, res, next) => {
   }
 };
 
-const postSignUp = (req, res, next) => {
+const postSignUp = async(req, res, next) => {
   try {
     const { Name, Email, Password } = req.body;
-    console.log(req.body);
-    const sql = `SELECT * FROM users WHERE email=?`;
-    connection.query(sql, [Email], (err, data) => {
-      if (err) throw err;
-      if (data.length > 0) {
-        return res.status(401).send("user already exist...");
-      } else {
-        const hashpassword = bcrypt.hashSync(Password, 10);
-        const mysql = "INSERT INTO users(name,email,password)VALUES(?,?,?)";
-        connection.query(mysql, [Name, Email, hashpassword], (err, data) => {
-          console.log(Name, Email, Password);
-          if (!err) {
-            //  redirect after successfull sign up
-            return res.redirect("/");
-          }
-        });
-      }
-    });
+    // var salt = crypto.randomBytes(16).toString('hex');
+
+    // const hashedPassword = await pbkdf2(Password, salt);
+    const sql=`SELECT * FROM users WHERE email=?`
+    const[rows,fields]= await connection.query(sql,[Email])
+    if(rows.length===0){
+      console.log(Password);
+      // console.log();
+      const hashedPassword=await bcrypt.hash(Password,10)
+      console.log(hashedPassword);
+      const sql=`INSERT INTO users (name,email,password) VALUES (?,?,?)`
+      await connection.query(sql,[Name,Email,hashedPassword])
+    res.status(200).send('user created')
+    }else{console.log('user already exists');}
   } catch (error) {
     console.log(error);
+    return res.status(500).send('could not create user')
   }
 };
 // ===END OF SIGN UP===
@@ -83,5 +90,5 @@ module.exports = {
   getLogin,
   getSignUp,
   postSignUp,
-  postLogin,
+  // postLogin,
 };

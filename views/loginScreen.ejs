@@ -42,7 +42,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script>
+     <!-- <script>
       const login = document.getElementById("login");
       login.addEventListener("click", (e) => {
         e.preventDefault();
@@ -64,21 +64,23 @@
             Response.json();
           })
           .then((result) => {
-            Swal.fire({
-              title: "Good job!",
-              text: "You clicked the button!",
-              icon: "success",
-            });
+            // Swal.fire({
+            //   title: "Good job!",
+            //   text: "You clicked the button!",
+            //   icon: "success",
+            // });
+            console.log('success')
           }).catch(error=>{
-            swal.fire({
-                icon:"error",
-                title:"Oooopss...",
-                text:"Something went wrong :astonished:"
-            })
+            // swal.fire({
+            //     icon:"error",
+            //     title:"Oooopss...",
+            //     text:"Something went wrong :astonished:"
+            // })
+            console.log('failure')
           });
       });
 
   
-    </script>
+    </script> -->
   </body>
 </html>

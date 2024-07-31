@@ -1,0 +1,66 @@
+<%-include('../partials/admin/admin.head.ejs')-%>
+
+<body>
+
+   <!-- Offcanval Overlay -->
+   <div class="offcanvas-overlay"></div>
+   <!-- Offcanval Overlay -->
+
+   <!-- Wrapper -->
+   <div class="wrapper">
+      <!-- Header -->
+      <%-include('../partials/admin/admin.header.ejs')-%>
+      <!-- End Header -->
+
+      <!-- Main Wrapper -->
+      <div class="main-wrapper">
+         <!-- Sidebar -->
+         <%-include('../partials/admin/admin.sidebar.ejs')-%>
+         <!-- End Sidebar -->
+
+         <!-- Main Content -->
+         <div class="main-content d-flex justify-content-center align-items-center">
+             
+            <!-- Project Manager Upload -->
+            <div id="file-drop-area-wrap">
+               
+               <!-- Dropzone Start -->
+               <form action="<%=id%>" id="dropzone01" class="dropzone" method="post" enctype="multipart/form-data">
+                  <div class="d-flex justify-content-center flex-column align-items-center align-self-center" data-dz-message>
+                     <div class="dz-message bold c2 font-20 mb-3">Click or Drop files here to upload.</div>
+                        <div class="upload-icon">
+                        <img src="../../../assets/img/svg/upload-down.svg" alt="" class="svg">
+                    </div>
+                    <!-- <input type="submit" value="Upload Image" class="btn btn-block w-100 border-bottom-0"> -->
+                  </div>
+               </form>
+               <!-- Dropzone End -->
+
+               <!-- End File drop area -->
+            </div>
+            <!-- End Project Manager Upload -->
+                    
+         </div>
+         <!-- End Main Content -->
+      </div>
+      <!-- End Main Wrapper -->
+
+      <!-- Footer -->
+      <%-include('../partials/admin/admin.footer.ejs')-%>
+      <!-- End Footer -->
+   </div>
+   <!-- End wrapper -->
+   
+
+   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+   <%-include('../partials/admin/admin.script.ejs')-%>
+   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+   
+   <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+   <script src="/assets/plugins/dropzone/dropzone.min.js"></script>
+   <script src="/assets/plugins/dropzone/dropzone.custom.js"></script>
+   <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+   
+</body>
+
+</html>

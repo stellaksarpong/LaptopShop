@@ -26,7 +26,7 @@
                         <div class="col-12">
                             <div class="card mb-30">
                                 <div class="card-body pt-30">
-                                    <h4 class="font-20 ">Table Head Options</h4>
+                                    <h4 class="font-20 ">List of Laptops</h4>
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Invoice List Table -->
@@ -49,7 +49,11 @@
                                                     <td><%=data.model%></td>
                                                     <td><%=data.description%></td>
                                                     <td><%=data.categories%></td>
-                                                    <td><a href="invoice-details.html" class="details-btn">View Details <i class="icofont-arrow-right"></i></a></td>
+                                                    <td>
+                                                        <a href="viewlaptops/specs/<%=data.id%>" data-id="<%=data.id%>"><i class="icofont-list p-3 text-warning h3" title="add specification"></i></a>
+                                                        <a href="viewlaptops/image/<%=data.id%>" data-id="<%=data.id%>"><i class="icofont-image p-3 text-info h3" title="add image"></i></a>
+                                                        <a  data-id="<%=data.id%>"><i class="icofont-bin p-3 text-danger h3" title="delete"></i></a>
+                                                    </td>
                                                 </tr>
                                             <%})%>
                                         </tbody>
@@ -66,19 +70,14 @@
         <!-- End Main Wrapper -->
 
         <!-- Footer -->
-        <footer class="footer">
-            Dashmin © 2020 created by <a href="https://www.themelooks.com/"> ThemeLooks</a>
-        </footer>
+        <%-include('../partials/admin/admin.footer.ejs')-%>
+
         <!-- End Footer -->
     </div>
     <!-- End wrapper -->
 
-    <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="../../assets/js/script.js"></script>
-    <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+    <%-include('../partials/admin/admin.script.ejs')-%>
+
 </body>
 
 </html>

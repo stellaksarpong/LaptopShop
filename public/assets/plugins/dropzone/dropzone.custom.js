@@ -9,13 +9,15 @@ Author url    :  http://themelooks.com
 
 ----------------------------------------------*/
 
+$(function () {
+  "use strict";
 
-$(function() {
-    'use strict';
-    
-    Dropzone.options.dropzone01 = {
-        addRemoveLinks: true,
-        dictRemoveFile: ''
-    };
+  Dropzone.options.dropzone01 = {
+    addRemoveLinks: true,
+    // paramName: "images",
+    acceptedFiles: "image/*",
+    maxFiles: 10,
+    maxFilesize: 1024, // MB
+    dictRemoveFile: "",
+  };
 });
-      
